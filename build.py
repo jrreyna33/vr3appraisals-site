@@ -4,7 +4,7 @@ PREVIEW=True adds noindex so the github.io preview doesn't compete with the real
 Flip to False at launch (when www.vr3appraisals.com points here)."""
 import os, json, datetime
 
-PREVIEW = True
+PREVIEW = False
 DOMAIN = "https://www.vr3appraisals.com"
 PHONE = "214-280-4464"
 PHONE_TEL = "+12142804464"
@@ -243,6 +243,7 @@ def build(out):
       "".join(f"<url><loc>{DOMAIN}/{'' if u=='index.html' else u}</loc></url>\n" for u in urls) + "</urlset>\n")
     W("robots.txt", ("User-agent: *\nDisallow: /\n" if PREVIEW else f"User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n"))
     W(".nojekyll", "")
+    W("CNAME", "www.vr3appraisals.com\n")
     W("404.html", page("404.html", "Page not found | VR3 Appraisals", "Page not found.", '<h1>Page not found</h1><p><a href="index.html">Back to the home page</a></p>'))
 
 if __name__ == "__main__":
