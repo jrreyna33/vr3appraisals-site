@@ -62,7 +62,8 @@ nav a:hover{background:rgba(20,33,61,.06)}nav a[aria-current]{box-shadow:inset 0
 .verify{display:inline-block;margin-top:14px;font-size:.95rem;color:var(--navy)}
 @media(max-width:720px){.hero .vwrap{text-align:center}}
 .hrule{border:0;border-top:1px solid var(--line);margin:22px 0 0}
-main{padding:8px 0 56px}.crumb{margin-top:24px}
+main{padding:8px 0 56px}.lede-sm{font-size:1.08rem;color:#45413b}
+.crumb{margin-top:24px}
 .rlist{list-style:none;padding:0;margin:16px 0;border:1px solid var(--line);background:var(--card)}
 .rlist li{border-bottom:1px solid var(--line)}.rlist li:last-child{border-bottom:0}
 .rlist a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 16px;text-decoration:none;color:var(--navy)}
@@ -189,6 +190,46 @@ SERVICES = [
 <p>I work with appraisal district records in all nine counties I serve.</p>"""),
 ]
 
+CITIES = [
+ dict(f="lucas-tx-home-appraisal.html", city="Lucas", county="Collin",
+  intro="Lucas is where I'm based. It's a small Collin County city between Allen and Lake Lavon, known for large lots, acreage and custom-built homes rather than tract subdivisions.",
+  points=["Few truly similar sales. A custom home on several acres may have no twin nearby, so comparable sales often come from Parker, Fairview, Murphy or rural Allen and McKinney, with careful adjustments.",
+          "Land is a big part of the value. Lot size, usable versus flood-prone acreage, frontage and road access all matter.",
+          "Outbuildings, barns, shops, pools and arenas are common, and each one has to be measured and valued on its own merits.",
+          "Many homes run on septic and some on well water, which affects both condition review and marketability."],
+  nearby="Parker, Fairview, Allen, Wylie and St. Paul"),
+ dict(f="rockwall-tx-home-appraisal.html", city="Rockwall", county="Rockwall",
+  intro="Rockwall is the county seat of Rockwall County, the smallest county in Texas by area, on the east shore of Lake Ray Hubbard. The market runs from older neighborhoods near downtown to newer master-planned communities and waterfront homes.",
+  points=["Waterfront and water-view homes on Lake Ray Hubbard sell at a premium, and that premium has to be supported with sales that share the same view and access.",
+          "Rockwall, Heath, Fate, Royse City and McLendon-Chisholm all sit close together, but buyers treat them differently, so where comparable sales come from matters.",
+          "Fast-growing areas east of I-30 bring lots of new construction, where builder incentives can distort the sale price."],
+  nearby="Heath, Fate, Royse City, Rowlett and McLendon-Chisholm"),
+ dict(f="prosper-tx-home-appraisal.html", city="Prosper", county="Collin and Denton",
+  intro="Prosper straddles Collin and Denton counties and is one of the fastest-growing towns in North Texas, with large master-planned communities such as Windsong Ranch alongside estate lots on the older side of town.",
+  points=["Lots of new construction means builder sales, where incentives and upgrades can make the contract price look higher or lower than the home's market value.",
+          "A home may sit on one side of the county line, which changes the appraisal district, tax rate and sometimes school district.",
+          "Upgrade packages, lot premiums and community amenities all need to be weighed against resale evidence, not just the builder's price sheet."],
+  nearby="Celina, Frisco, McKinney, Aubrey and Little Elm"),
+ dict(f="wylie-tx-home-appraisal.html", city="Wylie", county="Collin",
+  intro="Wylie sits on the south side of Lake Lavon. Most of it is in Collin County, with small parts reaching into Dallas and Rockwall counties. It mixes established neighborhoods, newer subdivisions and some properties near the lake.",
+  points=["The city crosses county lines, so I confirm the correct appraisal district and tax record before anything else.",
+          "Subdivisions built in different decades sit side by side. Comparing a 1990s home with a 2020s build takes careful condition and quality adjustments.",
+          "Homes backing to open space or near Lake Lavon can carry a premium that needs to be supported by sales, not assumed."],
+  nearby="Sachse, Murphy, Lucas, St. Paul and Lavon"),
+ dict(f="celina-tx-home-appraisal.html", city="Celina", county="Collin and Denton",
+  intro="Celina, in northern Collin County and reaching into Denton County, has grown from a small farm town with a historic downtown square into one of the busiest new-home markets in the region.",
+  points=["Neighborhoods often have only a few years of resale history, so builder sales and nearby communities carry more weight in the analysis.",
+          "Rural acreage and brand-new subdivisions sit right next to each other, and they don't compare directly.",
+          "Infrastructure like new roads and schools changes what buyers pay from one year to the next, so the date of the value matters."],
+  nearby="Prosper, McKinney, Weston, Gunter and Aubrey"),
+ dict(f="fairview-tx-home-appraisal.html", city="Fairview", county="Collin",
+  intro="Fairview sits between Allen and McKinney in Collin County. It's known for larger lots, custom homes and the Heritage Ranch active-adult community.",
+  points=["Larger lots and custom homes mean fewer close comparisons, much like neighboring Lucas.",
+          "Age-restricted communities such as Heritage Ranch have their own buyer pool, so their sales compare best with each other.",
+          "Golf-course, greenbelt and estate lots can add value, but only by as much as the sales support."],
+  nearby="Lucas, Allen, McKinney and Parker"),
+]
+
 def build(out):
     os.makedirs(out, exist_ok=True)
     W = lambda n, s: open(os.path.join(out, n), "w").write(s)
@@ -225,7 +266,7 @@ def build(out):
     rows = "".join(f"<tr><td><b>{c} County</b></td><td>{cities}</td></tr>" for c, cities in COUNTIES)
     W("service-areas.html", page("service-areas.html", "Service Areas | 9 DFW Counties | VR3 Appraisals",
         "VR3 Appraisals serves Collin, Dallas, Denton, Rockwall, Tarrant, Kaufman, Hunt, Ellis and Johnson counties in North Texas.",
-        f"<h1>Service areas</h1><p>I'm based in Collin County and travel across nine North Texas counties. If your town isn't listed, call. If it's in one of these counties, I cover it.</p><table><tr><th>County</th><th>Including</th></tr>{rows}</table>" + cta(), crumb="Service areas"))
+        f"<h1>Service areas</h1><p>I'm based in Collin County and travel across nine North Texas counties. If your town isn't listed, call. If it's in one of these counties, I cover it.</p><h2>City guides</h2><ul class='rlist'>" + "".join(f'<li><a href="{c["f"]}"><b>{c["city"]}</b></a></li>' for c in CITIES) + f"</ul><h2>All counties</h2><table><tr><th>County</th><th>Including</th></tr>{rows}</table>" + cta(), crumb="Service areas"))
     W("about.html", page("about.html", "About J.R. Reyna | Certified Residential Appraiser | VR3 Appraisals",
         "Vicente \"J.R.\" Reyna III, Texas Certified Residential Appraiser #1361202, serving Dallas-Fort Worth since 2020.",
         f"""<h1>About</h1><p>I'm Vicente "J.R." Reyna III, a Texas Certified Residential Appraiser (#1361202). I've appraised homes across Dallas-Fort Worth since 2020, for lenders and directly for homeowners, attorneys and estates.</p>
@@ -238,7 +279,17 @@ def build(out):
 <div class="card"><h3>Email</h3><p><a href="mailto:{EMAIL}?subject=Appraisal%20quote%20request">{EMAIL}</a></p></div>
 <div class="card"><h3>Hours</h3><p>Monday–Friday, 8am–5pm</p></div></div>
 <h2>Helpful to include</h2><ul class="check"><li>Property address</li><li>Purpose (divorce, estate, PMI, pre-listing, tax protest, other)</li><li>The date the value is needed as of, if not today</li><li>Your deadline</li><li>Who will provide access</li></ul>""", crumb="Contact"))
-    urls = ["index.html", "services.html"] + [s["f"] for s in SERVICES] + ["for-attorneys.html", "service-areas.html", "about.html", "contact.html"]
+
+    for c in CITIES:
+        svc = "".join(f'<li><a href="{x["f"]}"><b>{x["name"]}</b></a></li>' for x in SERVICES)
+        body = (f'<h1>Home appraisals in {c["city"]}, TX</h1><p class="lede-sm">{c["intro"]}</p>'
+                f'<h2>What makes appraising in {c["city"]} different</h2><ul class="check">' + "".join(f"<li>{p}</li>" for p in c["points"]) + '</ul>'
+                f'<h2>Services in {c["city"]}</h2><ul class="rlist">{svc}</ul>'
+                f'<p>I also cover nearby {c["nearby"]}, plus the rest of {c["county"]} County. <a href="service-areas.html">See all service areas</a>.</p>')
+        W(c["f"], page(c["f"], f'{c["city"]}, TX Home Appraisal | Certified Appraiser | VR3 Appraisals',
+            f'Independent home appraisals in {c["city"]}, TX ({c["county"]} County) for divorce, estates, PMI removal, pre-listing and tax protests.',
+            body + cta(), crumb=f'<a href="service-areas.html">Service areas</a> › {c["city"]}'))
+    urls = ["index.html", "services.html"] + [s["f"] for s in SERVICES] + ["for-attorneys.html", "service-areas.html", "about.html", "contact.html"] + [c["f"] for c in CITIES]
     W("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       "".join(f"<url><loc>{DOMAIN}/{'' if u=='index.html' else u}</loc></url>\n" for u in urls) + "</urlset>\n")
     W("robots.txt", ("User-agent: *\nDisallow: /\n" if PREVIEW else f"User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n"))
