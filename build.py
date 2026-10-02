@@ -33,7 +33,7 @@ h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;line-he
 h1{font-size:clamp(2.45rem,10.2vw,4rem);font-weight:400;line-height:1.04;letter-spacing:-.02em}h2{font-size:clamp(1.45rem,3.6vw,1.95rem);margin-top:1.6em}h3{font-size:1.2rem}
 a{color:var(--ox)}p{margin:0 0 1em}
 .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
-header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header{background:var(--paper);position:sticky;top:0;z-index:5}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;flex-wrap:wrap}
 .brand{color:var(--navy);text-decoration:none;font-family:"Newsreader",Georgia,serif;font-size:1.7rem;font-weight:500;letter-spacing:-.01em;font-variation-settings:"opsz" 72}
 nav{display:flex;gap:2px;flex-wrap:wrap}
@@ -230,7 +230,6 @@ def build(out):
         "Vicente \"J.R.\" Reyna III, Texas Certified Residential Appraiser #1361202, serving Dallas-Fort Worth since 2020.",
         f"""<h1>About</h1><p>I'm Vicente "J.R." Reyna III, a Texas Certified Residential Appraiser (#1361202). I've appraised homes across Dallas-Fort Worth since 2020, for lenders and directly for homeowners, attorneys and estates.</p>
 <p>I also hold a Texas real estate license. That means I see how homes are priced, shown and negotiated, not just how they close.</p>
-<p>Before appraisal, I spent twenty years in the restaurant and bar business. That's where I learned that showing up on time and returning calls matters as much as the work itself.</p>
 <p>VR3 Appraisals is part of VR3 Management Corp LLC.</p>""" + cta(), crumb="About"))
     W("contact.html", page("contact.html", "Contact | Request an Appraisal Quote | VR3 Appraisals",
         "Call, text or email VR3 Appraisals for a residential appraisal quote anywhere in Dallas-Fort Worth.",
