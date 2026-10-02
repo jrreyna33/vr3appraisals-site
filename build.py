@@ -28,36 +28,46 @@ NAV = [("index.html", "Home"), ("services.html", "Services"), ("for-attorneys.ht
 CSS = """
 :root{--ink:#2B2B2B;--navy:#14213D;--ox:#7A1F2B;--ox-d:#5E1720;--paper:#F6F1E7;--line:#D9D2C3;--muted:#5f5a52;--card:#FBF8F2}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
-body{margin:0;font:17px/1.6 "Source Sans 3",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper)}
-h1,h2,h3{font-family:"Newsreader",Georgia,serif;line-height:1.15;color:var(--navy);margin:0 0 .5em;font-weight:600}
-h1{font-size:clamp(2.1rem,6vw,3.2rem);letter-spacing:-.01em}h2{font-size:clamp(1.45rem,3.6vw,1.95rem);margin-top:1.6em}h3{font-size:1.2rem}
+body{margin:0;font:17px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper)}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;line-height:1.1;color:var(--navy);margin:0 0 .5em;font-weight:500;font-variation-settings:"opsz" 72}
+h1{font-size:clamp(2.45rem,10.2vw,4rem);font-weight:400;line-height:1.04;letter-spacing:-.02em}h2{font-size:clamp(1.45rem,3.6vw,1.95rem);margin-top:1.6em}h3{font-size:1.2rem}
 a{color:var(--ox)}p{margin:0 0 1em}
 .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
 header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;flex-wrap:wrap}
-.brand{color:var(--navy);text-decoration:none;font-family:"Newsreader",Georgia,serif;font-size:1.45rem;font-weight:600}
+.brand{color:var(--navy);text-decoration:none;font-family:"Newsreader",Georgia,serif;font-size:1.7rem;font-weight:500;letter-spacing:-.01em;font-variation-settings:"opsz" 72}
 nav{display:flex;gap:2px;flex-wrap:wrap}
 nav a{color:var(--navy);text-decoration:none;font-size:.95rem;padding:6px 10px;border-radius:4px}
 nav a:hover{background:rgba(20,33,61,.06)}nav a[aria-current]{box-shadow:inset 0 -2px 0 var(--ox)}
 .callbar{display:none}
-@media(max-width:720px){nav{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}nav a{white-space:nowrap}
+.menu{display:none}
+@media(max-width:720px){header nav{display:none}
+ .menu{display:block;position:relative}.menu summary{list-style:none;cursor:pointer;padding:8px 2px}.menu summary::-webkit-details-marker{display:none}
+ .menu summary svg{display:block}
+ .menu[open] .drop{position:absolute;right:0;top:44px;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 24px rgba(20,33,61,.12);min-width:200px;padding:6px 0;display:flex;flex-direction:column}
+ .menu .drop a{color:var(--navy);text-decoration:none;padding:12px 18px;font-size:1rem}
+ .menu .drop a[aria-current]{color:var(--ox)}
+ header .wrap{flex-wrap:nowrap}
  .callbar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:9;background:var(--navy)}
- .callbar a{flex:1;text-align:center;padding:16px 8px;color:#fff;font-weight:600;text-decoration:none;border-right:1px solid rgba(255,255,255,.18)}
+ .callbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 8px 12px;color:#fff;font-weight:500;font-size:.92rem;text-decoration:none;border-right:1px solid rgba(255,255,255,.22);background:var(--navy)!important}
+ .callbar svg{width:22px;height:22px}
  .callbar a:last-child{border-right:0}
- body{padding-bottom:58px}.hero .btn-p{display:block;text-align:center;margin-right:0}}
-.hero{padding:44px 0 36px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,rgba(20,33,61,.035) 31px,rgba(20,33,61,.035) 32px)}
-.hero p.lede{font-size:1.15rem;color:var(--muted);max-width:620px}
-.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--navy);font-weight:700;margin-bottom:1.1em}
+ body{padding-bottom:70px}.hero .btn-p{display:block;text-align:center;margin-right:0}}
+.hero{padding:30px 0 26px}
+.hero p.lede{font-size:1.08rem;line-height:1.5;color:#45413b;max-width:600px;margin-top:-.1em}
+.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:clamp(.5rem,2.2vw,.74rem);white-space:nowrap;color:var(--navy);font-weight:600;margin-bottom:1.3em}
 .btn{display:inline-block;padding:14px 24px;border-radius:3px;font-weight:700;text-decoration:none;margin:6px 10px 0 0}
 .btn-p{background:var(--ox);color:#fff}.btn-p:hover{background:var(--ox-d)}
 .btn-s{border:1.5px solid var(--navy);color:var(--navy)}
 .verify{display:inline-block;margin-top:14px;font-size:.95rem;color:var(--navy)}
-main{padding:36px 0 56px}
-.rlist{list-style:none;padding:0;margin:18px 0;border-top:1px solid var(--line)}
-.rlist li{border-bottom:1px solid var(--line)}
-.rlist a{display:flex;justify-content:space-between;gap:16px;padding:16px 4px;text-decoration:none;color:var(--navy)}
-.rlist a:hover{background:var(--card)}.rlist b{font-family:"Newsreader",Georgia,serif;font-size:1.2rem;font-weight:600}
-.rlist span{color:var(--muted);font-size:.95rem}.rlist a:after{content:"›";color:var(--ox);font-size:1.4rem;line-height:1}
+@media(max-width:720px){.hero .vwrap{text-align:center}}
+.hrule{border:0;border-top:1px solid var(--line);margin:22px 0 0}
+main{padding:8px 0 56px}.crumb{margin-top:24px}
+.rlist{list-style:none;padding:0;margin:16px 0;border:1px solid var(--line);background:var(--card)}
+.rlist li{border-bottom:1px solid var(--line)}.rlist li:last-child{border-bottom:0}
+.rlist a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 16px;text-decoration:none;color:var(--navy)}
+.rlist a:hover{background:var(--card)}.rlist b{font-weight:500;font-size:1.02rem}
+.rlist span{color:var(--muted);font-size:.95rem}.rlist a:after{content:"›";color:var(--navy);font-size:1.5rem;line-height:1}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:22px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:20px}
 .card h3 a{color:var(--navy);text-decoration:none}.card p{color:var(--muted);margin:0}
@@ -72,7 +82,7 @@ footer{background:var(--navy);color:#b9c0cc;padding:30px 0;font-size:.9rem}foote
 .crumb{font-size:.88rem;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em}.crumb a{color:var(--muted);text-decoration:none}
 """
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,600&family=Source+Sans+3:wght@400;700&display=swap" rel="stylesheet">'
+FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">'
 
 def schema():
     return {
@@ -96,7 +106,8 @@ def page(fname, title, desc, body, hero=None, crumb=None):
 <link rel="canonical" href="{canon}">{FONTS}<link rel="stylesheet" href="style.css">
 {'<script type="application/ld+json">'+ld+'</script>' if ld else ''}
 </head><body>
-<header><div class="wrap"><a class="brand" href="index.html">VR3 Appraisals</a><nav>{navhtml}</nav></div></header>
+<header><div class="wrap"><a class="brand" href="index.html">VR3 Appraisals</a><nav>{navhtml}</nav>
+<details class="menu"><summary aria-label="Menu"><svg width="26" height="20" viewBox="0 0 26 20" fill="none" stroke="#14213D" stroke-width="2"><path d="M1 2h24M1 10h24M1 18h24"/></svg></summary><div class="drop">{navhtml}</div></details></div></header>
 {hero or ''}
 <main><div class="wrap">{crumbs}{body}</div></main>
 <footer><div class="wrap">
@@ -106,7 +117,7 @@ Vicente "J.R." Reyna III, Texas Certified Residential Appraiser #1361202 · <a h
 <p>Serving {", ".join(c for c,_ in COUNTIES[:-1])} and {COUNTIES[-1][0]} counties.</p>
 <p>© {datetime.date.today().year} VR3 Management Corp LLC</p>
 </div></footer>
-<div class="callbar"><a class="btn-p" href="tel:{PHONE_TEL}">Call</a><a class="btn-s" href="sms:{PHONE_TEL}">Text</a><a class="btn-s" href="mailto:{EMAIL}">Email</a></div>
+<div class="callbar"><a href="tel:{PHONE_TEL}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Call</a><a href="sms:{PHONE_TEL}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>Text</a><a href="mailto:{EMAIL}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></svg>Email</a></div>
 </body></html>"""
 
 def cta(line="Tell me the property, the purpose, and the date you need the value as of. I'll come back with a quote and a turnaround date."):
@@ -182,12 +193,13 @@ def build(out):
     os.makedirs(out, exist_ok=True)
     W = lambda n, s: open(os.path.join(out, n), "w").write(s)
     W("style.css", CSS)
-    cards = '<ul class="rlist">' + "".join(f'<li><a href="{s["f"]}"><div><b>{s["name"]}</b><br><span>{s["short"]}</span></div></a></li>' for s in SERVICES) + '</ul>' 
+    cards = '<ul class="rlist">' + "".join(f'<li><a href="{s["f"]}"><div><b>{s["name"]}</b><br><span>{s["short"]}</span></div></a></li>' for s in SERVICES) + '</ul>'
+    rows = '<ul class="rlist">' + "".join(f'<li><a href="{s["f"]}"><b>{s["name"]}</b></a></li>' for s in SERVICES) + '</ul>' 
     hero = f"""<section class="hero"><div class="wrap"><div class="eyebrow">Texas Certified Residential Appraiser · License #1361202</div>
 <h1>Residential appraisals for homeowners, attorneys and estates across DFW</h1>
-<p class="lede">Independent home appraisals for divorce and probate matters, estates, PMI removal, pre-listing and property tax protests. Nine North Texas counties.</p>
-<a class="btn btn-p" href="tel:{PHONE_TEL}">Call {PHONE}</a><br><a class="verify" href="{TALCB}" rel="noopener">Verify my license with TALCB ›</a></div></section>"""
-    home = f"""<h2 style="margin-top:0">Services</h2>{cards}
+<p class="lede">Independent appraisals for divorce, probate, PMI removal, pre-listing and tax protests. Nine North Texas counties.</p>
+<a class="btn btn-p" href="tel:{PHONE_TEL}">Call {PHONE}</a><div class="vwrap"><a class="verify" href="{TALCB}" rel="noopener">Verify my license with TALCB</a></div><hr class="hrule"></div></section>"""
+    home = f"""<h2 style="margin-top:0">Services</h2>{rows}
 <h2>Why an independent appraisal</h2>
 <p>Online estimates can't see inside your home, and a listing agent's price is a sales pitch. An appraisal is a licensed, independent opinion of value. It's backed by measured square footage, documented condition, and sales I've verified.</p>
 <p>I'm J.R. Reyna, a Texas Certified Residential Appraiser based in Collin County. I also hold a Texas real estate license, so I know the market from both sides of the closing table.</p>
