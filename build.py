@@ -112,7 +112,7 @@ def page(fname, title, desc, body, hero=None, crumb=None):
 <main><div class="wrap">{crumbs}{body}</div></main>
 <footer><div class="wrap">
 <p><b style="color:#fff">VR3 Appraisals</b> · Precision in Every Valuation<br>
-Vicente "J.R." Reyna III, Texas Certified Residential Appraiser #1361202 · <a href="{TALCB}">Verify</a><br>
+Vicente "J.R." Reyna III, Texas Certified Residential Appraiser #1361202 · <a href="{TALCB}" target="_blank" rel="noopener">Verify</a><br>
 <a href="tel:{PHONE_TEL}">{PHONE}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a> · Mon–Fri 8–5</p>
 <p>Serving {", ".join(c for c,_ in COUNTIES[:-1])} and {COUNTIES[-1][0]} counties.</p>
 <p>© {datetime.date.today().year} VR3 Management Corp LLC</p>
@@ -198,7 +198,7 @@ def build(out):
     hero = f"""<section class="hero"><div class="wrap"><div class="eyebrow">Texas Certified Residential Appraiser · License #1361202</div>
 <h1>Residential appraisals for homeowners, attorneys and estates across DFW</h1>
 <p class="lede">Independent appraisals for divorce, probate, PMI removal, pre-listing and tax protests. Nine North Texas counties.</p>
-<a class="btn btn-p" href="tel:{PHONE_TEL}">Call {PHONE}</a><div class="vwrap"><a class="verify" href="{TALCB}" rel="noopener">Verify my license with TALCB</a></div><hr class="hrule"></div></section>"""
+<a class="btn btn-p" href="tel:{PHONE_TEL}">Call {PHONE}</a><div class="vwrap"><a class="verify" href="{TALCB}" target="_blank" rel="noopener">Verify my license with TALCB</a></div><hr class="hrule"></div></section>"""
     home = f"""<h2 style="margin-top:0">Services</h2>{rows}
 <h2>Why an independent appraisal</h2>
 <p>Online estimates can't see inside your home, and a listing agent's price is a sales pitch. An appraisal is a licensed, independent opinion of value. It's backed by measured square footage, documented condition, and sales I've verified.</p>
