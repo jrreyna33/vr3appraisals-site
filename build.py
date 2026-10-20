@@ -241,7 +241,7 @@ def build(out):
 <p class="lede">Mortgage appraisals for lenders and AMCs, plus independent appraisals for divorce, probate, PMI removal, pre-listing and tax protests. Nine North Texas counties.</p>
 <a class="btn btn-p" href="tel:{PHONE_TEL}">Call {PHONE}</a><div class="vwrap"><a class="verify" href="{TALCB}" target="_blank" rel="noopener">Verify my license with TALCB</a></div><hr class="hrule"></div></section>"""
     home = f"""<h2 style="margin-top:0">Lender &amp; AMC appraisals</h2>
-<p>Most of my work is mortgage appraisals for lenders and appraisal management companies. I'm already delivering conventional reports on UAD 3.6.</p>
+<p>Most of my work is mortgage appraisals for lenders and appraisal management companies. I began delivering UAD 3.6 reports before the November 2026 cutover.</p>
 <ul class="rlist"><li><a href="lenders.html"><div><b>Conventional · FHA · USDA · Jumbo</b><br><span>1–4 unit, new construction and manufactured homes. E&amp;O insured.</span></div></a></li></ul>
 <h2>Homeowners, attorneys &amp; estates</h2>{rows}
 <h2>Why an independent appraisal</h2>
@@ -270,8 +270,8 @@ def build(out):
 <tr><th>Coverage</th><td>{", ".join(c for c,_ in COUNTIES)} counties</td></tr>
 </table>
 <h2>UAD 3.6</h2>
-<p>I'm already delivering conventional appraisals on the redesigned URAR and UAD 3.6, ahead of the industry cutover, and I'm ready for FHA on 3.6 as soon as it rolls out.</p>
-<p>I built my own software for the 3.6 workflow. It pulls county appraisal-district records and MLS data into the report and checks every field before delivery to catch clerical errors before you see them. The comparable selection, adjustments and final opinion of value are always my own.</p>
+<p>I began delivering appraisals on the redesigned URAR and UAD 3.6 before the November 2026 cutover, and I'm ready for FHA on 3.6.</p>
+<p>I built my own software that assists with data entry and quality checks. The comparable selection, adjustments and final opinion of value are always my own.</p>
 <h2>Working with me</h2>
 <ul class="check">
 <li>Measured square footage from my own sketch, never copied from MLS or tax records</li>
