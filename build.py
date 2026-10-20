@@ -22,7 +22,7 @@ COUNTIES = [
     ("Johnson", "Burleson, Cleburne, Joshua, Keene"),
 ]
 
-NAV = [("index.html", "Home"), ("services.html", "Services"), ("for-attorneys.html", "Attorneys"),
+NAV = [("index.html", "Home"), ("lenders.html", "Lenders"), ("services.html", "Services"), ("for-attorneys.html", "Attorneys"),
        ("service-areas.html", "Areas"), ("about.html", "About"), ("contact.html", "Contact")]
 
 CSS = """
@@ -237,10 +237,13 @@ def build(out):
     cards = '<ul class="rlist">' + "".join(f'<li><a href="{s["f"]}"><div><b>{s["name"]}</b><br><span>{s["short"]}</span></div></a></li>' for s in SERVICES) + '</ul>'
     rows = '<ul class="rlist">' + "".join(f'<li><a href="{s["f"]}"><b>{s["name"]}</b></a></li>' for s in SERVICES) + '</ul>' 
     hero = f"""<section class="hero"><div class="wrap"><div class="eyebrow">Texas Certified Residential Appraiser · License #1361202</div>
-<h1>Residential appraisals for homeowners, attorneys and estates across DFW</h1>
-<p class="lede">Independent appraisals for divorce, probate, PMI removal, pre-listing and tax protests. Nine North Texas counties.</p>
+<h1>Residential appraisals for lenders, attorneys and homeowners across DFW</h1>
+<p class="lede">Mortgage appraisals for lenders and AMCs, plus independent appraisals for divorce, probate, PMI removal, pre-listing and tax protests. Nine North Texas counties.</p>
 <a class="btn btn-p" href="tel:{PHONE_TEL}">Call {PHONE}</a><div class="vwrap"><a class="verify" href="{TALCB}" target="_blank" rel="noopener">Verify my license with TALCB</a></div><hr class="hrule"></div></section>"""
-    home = f"""<h2 style="margin-top:0">Services</h2>{rows}
+    home = f"""<h2 style="margin-top:0">Lender &amp; AMC appraisals</h2>
+<p>Most of my work is mortgage appraisals for lenders and appraisal management companies. I'm already delivering conventional reports on UAD 3.6.</p>
+<ul class="rlist"><li><a href="lenders.html"><div><b>Conventional · FHA · USDA · Jumbo</b><br><span>1–4 unit, new construction and manufactured homes. E&amp;O insured.</span></div></a></li></ul>
+<h2>Homeowners, attorneys &amp; estates</h2>{rows}
 <h2>Why an independent appraisal</h2>
 <p>Online estimates can't see inside your home, and a listing agent's price is a sales pitch. An appraisal is a licensed, independent opinion of value. It's backed by measured square footage, documented condition, and sales I've verified.</p>
 <p>I'm J.R. Reyna, a Texas Certified Residential Appraiser based in Collin County. I also hold a Texas real estate license, so I know the market from both sides of the closing table.</p>
@@ -252,7 +255,29 @@ def build(out):
     W("services.html", page("services.html", "Appraisal Services | VR3 Appraisals | DFW",
         "Residential appraisal services for homeowners, attorneys and estates in Dallas-Fort Worth.",
         f'<h1>Services</h1><p>Every appraisal comes with an inspection, my measurements and photos, verified sales comparisons, and a full written report.</p>{cards}'
-        '<h2>Also available</h2><ul class="check"><li>Retrospective (past-date) appraisals for any purpose</li><li>New construction and custom homes</li><li>Acreage and rural residential</li><li>Lender and AMC assignments</li></ul>' + cta(), crumb="Services"))
+        '<h2>Also available</h2><ul class="check"><li>Retrospective (past-date) appraisals for any purpose</li><li>New construction and custom homes</li><li>Acreage and rural residential</li><li><a href="lenders.html">Lender and AMC assignments</a></li></ul>' + cta(), crumb="Services"))
+
+    W("lenders.html", page("lenders.html", "Mortgage Appraisals for Lenders & AMCs | UAD 3.6 | DFW | VR3 Appraisals",
+        "Texas Certified Residential Appraiser for lenders and AMCs in nine DFW counties. Conventional, FHA, USDA and jumbo. Delivering UAD 3.6 now. E&O insured.",
+        f"""<h1>For lenders &amp; AMCs</h1>
+<p class="lede-sm">Mortgage appraisals are the core of my practice. I work with appraisal management companies and directly with lenders across nine North Texas counties.</p>
+<table>
+<tr><th>Credential</th><td>Texas Certified Residential Appraiser #1361202 · <a href="{TALCB}" target="_blank" rel="noopener">Verify with TALCB</a></td></tr>
+<tr><th>Experience</th><td>Appraising residential property in Dallas-Fort Worth since 2020</td></tr>
+<tr><th>Insurance</th><td>Errors &amp; omissions (E&amp;O) insurance carried</td></tr>
+<tr><th>Loan types</th><td>Conventional, FHA, USDA, jumbo</td></tr>
+<tr><th>Property types</th><td>Single-family, 2–4 unit, new construction, manufactured homes</td></tr>
+<tr><th>Coverage</th><td>{", ".join(c for c,_ in COUNTIES)} counties</td></tr>
+</table>
+<h2>UAD 3.6</h2>
+<p>I'm already delivering conventional appraisals on the redesigned URAR and UAD 3.6, ahead of the industry cutover, and I'm ready for FHA on 3.6 as soon as it rolls out.</p>
+<p>I built my own software for the 3.6 workflow. It pulls county appraisal-district records and MLS data into the report and checks every field before delivery to catch clerical errors before you see them. The comparable selection, adjustments and final opinion of value are always my own.</p>
+<h2>Working with me</h2>
+<ul class="check">
+<li>Measured square footage from my own sketch, never copied from MLS or tax records</li>
+<li>Reconsiderations of value answered with market data</li></ul>"""
+        + cta("To add VR3 Appraisals to your panel, send your onboarding packet or engagement details. I'll return my license, E&amp;O and W-9 promptly."),
+        crumb="For lenders &amp; AMCs"))
     W("for-attorneys.html", page("for-attorneys.html", "Appraisals for Family Law & Probate Attorneys | DFW | VR3 Appraisals",
         "Independent residential appraisals for family law and probate attorneys in Collin, Dallas, Denton, Rockwall and surrounding counties.",
         """<h1>For attorneys</h1><p>I appraise residential property for family law and probate matters across nine North Texas counties. My job is the number, not either side's position.</p>
@@ -269,7 +294,7 @@ def build(out):
         f"<h1>Service areas</h1><p>I'm based in Collin County and travel across nine North Texas counties. If your town isn't listed, call. If it's in one of these counties, I cover it.</p><h2>City guides</h2><ul class='rlist'>" + "".join(f'<li><a href="{c["f"]}"><b>{c["city"]}</b></a></li>' for c in CITIES) + f"</ul><h2>All counties</h2><table><tr><th>County</th><th>Including</th></tr>{rows}</table>" + cta(), crumb="Service areas"))
     W("about.html", page("about.html", "About J.R. Reyna | Certified Residential Appraiser | VR3 Appraisals",
         "Vicente \"J.R.\" Reyna III, Texas Certified Residential Appraiser #1361202, serving Dallas-Fort Worth since 2020.",
-        f"""<h1>About</h1><p>I'm Vicente "J.R." Reyna III, a Texas Certified Residential Appraiser (#1361202). I've appraised homes across Dallas-Fort Worth since 2020, for lenders and directly for homeowners, attorneys and estates.</p>
+        f"""<h1>About</h1><p>I'm Vicente "J.R." Reyna III, a Texas Certified Residential Appraiser (#1361202). I've appraised homes across Dallas-Fort Worth since 2020. Most of my work is mortgage appraisals for lenders and appraisal management companies, and I also work directly with homeowners, attorneys and estates.</p>
 <p>I also hold a Texas real estate license. That means I see how homes are priced, shown and negotiated, not just how they close.</p>
 <p>VR3 Appraisals is part of VR3 Management Corp LLC.</p>""" + cta(), crumb="About"))
     W("contact.html", page("contact.html", "Contact | Request an Appraisal Quote | VR3 Appraisals",
@@ -289,7 +314,7 @@ def build(out):
         W(c["f"], page(c["f"], f'{c["city"]}, TX Home Appraisal | Certified Appraiser | VR3 Appraisals',
             f'Independent home appraisals in {c["city"]}, TX ({c["county"]} County) for divorce, estates, PMI removal, pre-listing and tax protests.',
             body + cta(), crumb=f'<a href="service-areas.html">Service areas</a> › {c["city"]}'))
-    urls = ["index.html", "services.html"] + [s["f"] for s in SERVICES] + ["for-attorneys.html", "service-areas.html", "about.html", "contact.html"] + [c["f"] for c in CITIES]
+    urls = ["index.html", "lenders.html", "services.html"] + [s["f"] for s in SERVICES] + ["for-attorneys.html", "service-areas.html", "about.html", "contact.html"] + [c["f"] for c in CITIES]
     W("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       "".join(f"<url><loc>{DOMAIN}/{'' if u=='index.html' else u}</loc></url>\n" for u in urls) + "</urlset>\n")
     W("robots.txt", ("User-agent: *\nDisallow: /\n" if PREVIEW else f"User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n"))
